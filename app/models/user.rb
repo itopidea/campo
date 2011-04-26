@@ -21,6 +21,11 @@ class User
   
   has_many :topics, :validate => false
   has_many :replies, :validate => false
+  has_many :own_sites, :class_name => 'Site', :inverse_of => :owner
+
+  def admin_sites
+    Site.where(:admin_ids => self.id)
+  end
 
   validates_presence_of :username, :email
   validates_presence_of :password, :if => Proc.new {|user| user.requrie_password?}
@@ -29,7 +34,7 @@ class User
   validates_uniqueness_of :username, :email, :case_sensitive => false
   UsernameRegex = /\A\w{3,20}\z/
   validates_format_of :username, :with => UsernameRegex
-  validates_format_of :locale, :with => /\A(#{AllowLocale.join('|')})\Z/, :allow_blank => true
+  validates_format_of :locale, :with => /\A(#{AllowLocale.join('|')})\z/, :allow_blank => true
 
   EmailNameRegex  = '[\w\.%\+\-]+'
   DomainHeadRegex = '(?:[A-Z0-9\-]+\.)+'
