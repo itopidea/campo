@@ -1,11 +1,11 @@
 class Site
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :urlname
   field :name
   field :description
   field :domain
-  field :approved, :type => Boolean
 
   belongs_to :owner, :class_name => 'User'
   has_and_belongs_to_many :admins, :class_name => 'User'
@@ -20,9 +20,5 @@ class Site
 
   def urlname=(urlname)
     write_attribute :urlname, urlname unless self.urlname
-  end
-
-  def approve!(allow = true)
-    write_attribute :approved, allow
   end
 end

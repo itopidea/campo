@@ -1,0 +1,11 @@
+= render :partial => 'subheader', :locals => {:current => :own}
+
+.section
+  .section-content
+    %table.data-table
+      - @sites.each do |site|
+        %tr{:class => cycle("even", "odd")}
+          %td
+            = site.name
+          %td= site.description
+          %td.time= l site.created_at, :format => :short

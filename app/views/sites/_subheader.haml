@@ -5,6 +5,10 @@
     %img{:src => '/images/mascot.png'}
   #tabs
     %ul
+      - if current == :own
+        %li.current= link_to t('.own_site'), own_sites_path
+      - else
+        %li= link_to t('.own_site'), own_sites_path
+
       - if current == :new
-        %li.current
-          = link_to t('.new_site'), new_site_path
+        %li.current= link_to t('.new_site'), new_site_path

@@ -40,6 +40,7 @@ en:
       tips: "An system error is happen, please contact admin."
   sites:
     subheader:
+      own_site: "Own Sites"
       new_site: "New Site"
     new:
       create: "Create"

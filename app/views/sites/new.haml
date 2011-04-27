@@ -3,16 +3,10 @@
 .section
   .section-content
     = form_for @site do |f|
+      - if !f.object.errors.blank?
+        = render :partial => 'share/error_messages', :locals => {:object => f.object}
       %table.form-table
-        %tr
-          %th= f.label :urlname
-          %td= f.text_field :urlname, :class => 'text', :maxlength => 20
-        %tr
-          %th= f.label :name
-          %td= f.text_field :name, :class => 'text', :maxlength => 30
-        %tr
-          %th= f.label :description
-          %td= f.text_area :description, :class => 'text'
+        = render :partial => 'form', :object => f
         %tr
           %th
           %td= f.submit t('.create'), :class => 'button'

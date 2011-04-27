@@ -57,7 +57,12 @@ Campo::Application.routes.draw do
     resource :site_config, :controller => 'site_config'
   end
 
-  resources :sites, :only => [:index, :new, :create, :edit, :update]
+  resources :sites, :only => [:index, :new, :create, :edit, :update] do
+    collection do
+      get :own
+      get :admin
+    end
+  end
 
   match '*path', :to => 'errors#routing'
 end

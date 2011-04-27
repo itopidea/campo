@@ -27,12 +27,4 @@ class SiteTest < ActiveSupport::TestCase
     assert !Site.new(:urlname => 'a' * 2, :name => 'name').valid?
     assert !Site.new(:urlname => 'a' * 21, :name => 'name').valid?
   end
-
-  test 'site have approve logic' do
-    assert !@site.approved?
-    @site.approve!
-    assert @site.approved?
-    @site.approve!(false)
-    assert !@site.approved?
-  end
 end
