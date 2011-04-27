@@ -1,0 +1,18 @@
+= render :partial => 'subheader', :locals => {:current => :new}
+
+.section
+  .section-content
+    = form_for @site do |f|
+      %table.form-table
+        %tr
+          %th= f.label :urlname
+          %td= f.text_field :urlname, :class => 'text', :maxlength => 20
+        %tr
+          %th= f.label :name
+          %td= f.text_field :name, :class => 'text', :maxlength => 30
+        %tr
+          %th= f.label :description
+          %td= f.text_area :description, :class => 'text'
+        %tr
+          %th
+          %td= f.submit t('.create'), :class => 'button'

@@ -38,6 +38,11 @@ en:
     '500':
       title: "500 System error"
       tips: "An system error is happen, please contact admin."
+  sites:
+    subheader:
+      new_site: "New Site"
+    new:
+      create: "Create"
   notifications:
     index:
       deleted_user: "Deleted User"
