@@ -6,6 +6,6 @@
       - @sites.each do |site|
         %tr{:class => cycle("even", "odd")}
           %td
-            = site.name
+            = link_to site.name, root_url(:subdomain => site.urlname)
           %td= site.description
           %td.time= l site.created_at, :format => :short
