@@ -3,7 +3,14 @@ require 'test_helper'
 class SiteTest < ActiveSupport::TestCase
   def setup
     @user = create_user
+    @topic = @user.topics.create :title => 'title', :content => 'content', :tags => 'tag1 tag2'
     @site = Site.create :urlname => 'urlname', :name => 'name'
+  end
+
+  test 'site should have topics' do
+    assert_difference "@site.topics.count" do
+      @site.topics << @topic
+    end
   end
 
   test 'site should have admins' do

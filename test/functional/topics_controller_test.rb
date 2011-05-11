@@ -4,12 +4,19 @@ class TopicsControllerTest < ActionController::TestCase
   def setup
     @user = create_user
     @topic = @user.topics.create :title => 'title', :content => 'content', :tags => 'tag1 tag2'
+    @site = Site.create :urlname => 'urlname', :name => 'Site'
     create_site_config
   end
 
   def test_index
     get :index
     assert_response :success, @response.body
+    assert_equal 1, assigns(:topics).count
+
+    @request.host = "urlname.myapp.local"
+    get :index
+    assert_response :success, @response.body
+    assert_equal 0, assigns(:topics).count
   end
 
   def test_show

@@ -5,6 +5,15 @@ class TopicTest < ActiveSupport::TestCase
     @user = create_user
     @admin = create_admin
     @topic = @user.topics.create :title => 'title', :content => 'content', :tags => 'tag1 tag2'
+    @site = Site.create :urlname => 'urlname', :name => 'Name'
+  end
+
+  test "topic can be scope by site" do
+    assert_equal 1, Topic.count
+    assert_equal 1, Topic.site(nil).count
+    assert_equal 0, Topic.site(@site).count
+    @site.topics.create @topic.attributes
+    assert_equal 1, Topic.site(@site).count
   end
 
   def test_close_and_open

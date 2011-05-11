@@ -14,6 +14,14 @@ class ApplicationController < ActionController::Base
   protected
 
   attr_writer :show_head_html, :show_sidebar_bottom_html
+  attr_reader :current_site
+
+  def find_current_site
+    if request.subdomain.present?
+      @current_site ||= Site.where(:urlname => request.subdomain).first
+      render_404 unless @current_site
+    end
+  end
 
   def set_cache_buster
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
