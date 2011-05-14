@@ -5,6 +5,7 @@ class NotificationMailer < ActionMailer::Base
 
   def mention_mail(mention)
     @mention = mention
+    I18n.locale = mention.user.locale || I18n.default_locale
     mail(:to      => mention.user.email,
          :subject => I18n.t('notification_mailer.mention_mail.title'))
   end
