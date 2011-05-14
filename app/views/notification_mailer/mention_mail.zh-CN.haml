@@ -14,3 +14,7 @@
   %p
     查看：
     = link_to topic_url_with_last_anchor(@mention.topic), topic_url_with_last_anchor(@mention.topic)
+%p
+  不想再收到同类消息？登录
+  = link_to settings_account_url, settings_account_url
+  取消“有人提及我的时候 Email 我”并保存。

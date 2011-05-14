@@ -6,6 +6,6 @@ class NotificationMailerTest < ActionMailer::TestCase
     email = NotificationMailer.mention_mail(mention).deliver
     assert !ActionMailer::Base.deliveries.empty?
     assert_equal [mention.user.email], email.to
-    assert_equal I18n.t('notification_mailer.mention_mail.title'), email.subject
+    assert_equal I18n.t('notification_mailer.mention_mail.title', :name => APP_CONFIG['site_name']), email.subject
   end
 end

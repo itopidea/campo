@@ -16,6 +16,7 @@ class User
   field :banned, :type => Boolean
   field :reset_password_token
   field :access_token
+  field :email_mention, :type => Boolean, :default => true
   embeds_one :profile
   embeds_many :notifications, :class_name => 'Notification::Base'
   
@@ -39,7 +40,8 @@ class User
   validates_length_of :email, :maximum => 100
 
   attr_accessor :password, :password_confirmation, :current_password
-  attr_accessible :login, :username, :email, :locale, :password, :password_confirmation, :current_password
+  attr_accessible :login, :username, :email, :locale, :password, :password_confirmation, :current_password,
+                  :email_mention
 
   before_save :prepare_password
   before_create :init_profile, :reset_access_token

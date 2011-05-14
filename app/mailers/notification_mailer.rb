@@ -7,6 +7,6 @@ class NotificationMailer < ActionMailer::Base
     @mention = mention
     I18n.locale = mention.user.locale || I18n.default_locale
     mail(:to      => mention.user.email,
-         :subject => I18n.t('notification_mailer.mention_mail.title'))
+         :subject => I18n.t('notification_mailer.mention_mail.title', :name => APP_CONFIG['site_name']))
   end
 end

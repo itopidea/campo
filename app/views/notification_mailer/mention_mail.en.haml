@@ -14,3 +14,7 @@
   %p
     view:
     = link_to topic_url_with_last_anchor(@mention.topic), topic_url_with_last_anchor(@mention.topic)
+%p
+  Don't want to receive this message again? Login
+  = link_to settings_account_url, settings_account_url
+  uncheck "Email me if somebody mentions me" and save.

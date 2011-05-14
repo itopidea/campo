@@ -122,6 +122,9 @@ zh-CN:
     reset_password_token:
       title: "%{name}密码重置"
       description: "点击链接重置您的%{name}账号密码"
+  notification_mailer:
+    mention_mail:
+      title: "有人提及了你 %{name}"
   user_sessions:
     new:
       login_tips: "用户名 或 Email"
@@ -175,6 +178,7 @@ zh-CN:
     accounts:
       title: "设置账户"
       show:
+        email_mention_tips: "有人提及我的时候 Email 我"
         current_password_tips: "如果修改了用户名或 Email"
         save: "保存"
       update:

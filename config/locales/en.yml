@@ -43,7 +43,7 @@ en:
       deleted_user: "Deleted User"
       deleted_topic: "Deleted Topic"
       in: "in"
-      mention_you: "mention you"
+      mention_you: "mentions you"
       notification: "notification"
   topics:
     normal_mode: "Normal Mode"
@@ -122,6 +122,9 @@ en:
     reset_password_token:
       title: "%{name} Password Reset"
       description: "Follow this link to reset your %{name} password."
+  notification_mailer:
+    mention_mail:
+      title: "Somebody mentions your, %{name}"
   user_sessions:
     new:
       login_tips: "Username or Email"
@@ -175,6 +178,7 @@ en:
     accounts:
       title: "Setting Account"
       show:
+        email_mention_tips: "Email me if somebody mentions me"
         current_password_tips: "If modified Username or Email"
         save: "Save"
       update:

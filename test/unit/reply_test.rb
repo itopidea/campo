@@ -7,6 +7,18 @@ class ReplyTest < ActiveSupport::TestCase
     @topic = Factory(:topic, :user => @user)
   end
 
+  test "user should close mail notification" do
+    user = Factory(:user, :email_mention => true)
+    assert_difference "user.reload.notifications.count" do
+      Factory :reply, :content => "@#{user.username} hi"
+    end
+
+    user.update_attribute :email_mention, false
+    assert_no_difference "user.reload.notifications.count" do
+      Factory :reply, :content => "@#{user.username} hi"
+    end
+  end
+
   def test_extract_mentions
     6.times {|n| User.create :username => "user_#{n}", :email => "email_#{n}@test.com", :password => '12345678', :password_confirmation => '12345678'}
     reply = @topic.replies.new :content => "some text @user_0 @user_1 @user_2 @user_3 @user_4 @user_5 @user_6 @user_99 some text"
