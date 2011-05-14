@@ -16,3 +16,11 @@ Factory.define :reply do |reply|
   reply.association :user
   reply.association :topic
 end
+
+Factory.define :notification_mention, :class => Notification::Mention do |mention|
+  mention.association :user
+  mention.association :topic
+  mention.association :reply_user, :factory => :user
+  mention.association :reply
+  mention.text 'message'
+end

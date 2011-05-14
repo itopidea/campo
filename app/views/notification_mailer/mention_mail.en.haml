@@ -1,0 +1,16 @@
+%p
+  - if @mention.reply_user
+    = link_to_person @mention.reply_user
+  - else
+    [Deleted User]
+  in topic
+  - if @mention.topic
+    = link_to @mention.topic.title, topic_url_with_last_anchor(@mention.topic)
+  - else
+    [Deleted Topic]
+  mention you
+%blockquote= @mention.text
+- if @mention.topic
+  %p
+    view:
+    = link_to topic_url_with_last_anchor(@mention.topic), topic_url_with_last_anchor(@mention.topic)

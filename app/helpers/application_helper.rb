@@ -40,4 +40,12 @@ module ApplicationHelper
     options[:size] ||= 48
     link_to image_tag(user.gravatar_url(:size => options[:size]), :alt => "#{user.profile.name}'s gravatar"), person_url(:username => user.username), :title => "#{user.profile.name}'s person page"
   end
+
+  def topic_path_with_last_anchor(topic)
+    topic_path(topic, :anchor => topic.last_anchor)
+  end
+
+  def topic_url_with_last_anchor(topic)
+    topic_url(topic, :anchor => topic.last_anchor)
+  end
 end

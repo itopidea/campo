@@ -24,7 +24,7 @@ class RepliesController < ApplicationController
       respond_with @reply do |format|
         format.html do
           if @reply.valid?
-            redirect_to topic_url_with_last_anchor(@topic)
+            redirect_to topic_url(@topic, :anchor => @topic.last_anchor)
           else
             set_page_title I18n.t 'replies.new.new_reply'
             render :new, :topic_id => @topic.id
