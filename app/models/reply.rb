@@ -15,7 +15,11 @@ class Reply
   after_create :increment_topic_reply_cache, :add_replier_ids
   after_destroy :decrement_topic_reply_cache
   before_save :extract_mentions
-  after_create :send_menetion_notifications
+  after_create :async_send_mention_notification
+
+  def async_send_mention_notification
+    Resque.enqueue(Resque::MentionJob, self.id)
+  end
 
   def increment_topic_reply_cache
     topic.last_replied_by = user
@@ -43,7 +47,7 @@ class Reply
     end
   end
 
-  def send_menetion_notifications
+  def send_mention_notifications
     mention_users.each do |user|
       user.send_notification({:reply_user_id  => self.user_id,
                               :topic_id => self.topic_id,
