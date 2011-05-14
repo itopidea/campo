@@ -14,7 +14,6 @@ class Reply
 
   after_create :increment_topic_reply_cache, :add_replier_ids
   after_destroy :decrement_topic_reply_cache
-  before_save :extract_mentions
   after_create :async_send_mention_notification
 
   def async_send_mention_notification
@@ -45,9 +44,11 @@ class Reply
     else
       self.mention_user_ids = User.where(:username.in => usernames.map{|username| /^#{username}$/i }).only(:_id).map(&:_id)
     end
+    save
   end
 
   def send_mention_notifications
+    extract_mentions
     mention_users.each do |user|
       user.send_notification({:reply_user_id  => self.user_id,
                               :topic_id => self.topic_id,
