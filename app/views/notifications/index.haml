@@ -11,13 +11,13 @@
             .left
               - case notification
               - when Notification::Mention
-                - if @user_hash[notification.reply_user_id]
-                  = link_to_person @user_hash[notification.reply_user_id] 
+                - if notification.reply_user
+                  = link_to_person notification.reply_user 
                 - else
                   = t '.deleted_user'
                 = t '.in'
-                - if @topic_hash[notification.topic_id]
-                  = link_to @topic_hash[notification.topic_id].title, topic_path_with_last_anchor(@topic_hash[notification.topic_id])
+                - if notification.topic
+                  = link_to notification.topic.title, topic_path_with_last_anchor(notification.topic)
                 - else
                   = t '.deleted_topic'
                 = t '.mention_you'

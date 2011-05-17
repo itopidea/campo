@@ -11,7 +11,7 @@ xml.rss :version => "2.0" do
         xml.title topic.title
         xml.description rich_content(topic.content)
         xml.pubDate topic.created_at.to_s(:rfc822)
-        xml.author @user_hash[topic.user_id].profile.name
+        xml.author topic.user.profile.name
         xml.link topic_url_with_last_anchor(topic)
         xml.guid topic_url(topic)
         if topic.tags.present?

@@ -14,8 +14,6 @@ class NotificationsController < ApplicationController
           topic_ids << notification.topic_id
         end
       end
-      @user_hash = User.create_user_hash(user_ids)
-      @topic_hash = Topic.create_topic_hash(topic_ids)
     end
   end
 

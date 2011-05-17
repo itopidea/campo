@@ -10,7 +10,7 @@
             %span.tag= link_to tag, tagged_topics_path(:tag => tag)
         - if topic.last_replied_by_id
           = t '.last_replyer'
-          = link_to_person @user_hash[topic.last_replied_by_id]
+          = link_to_person topic.last_replied_by
         = smart_time_string topic.created_at
         - if topic.marker_ids and topic.marker_ids.any?
           %span.orange= "+ #{topic.marker_ids.count} #{t '.marker'}"

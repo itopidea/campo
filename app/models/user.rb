@@ -115,13 +115,6 @@ class User
     save
   end
 
-  def self.create_user_hash(user_ids)
-    user_hash = {}
-    users = User.where(:_id.in => user_ids)
-    users.each{|user| user_hash[user.id] = user}
-    user_hash
-  end
-
   def self.send_reset_password_instructions(attributes = {})
     return if attributes[:email].blank?
 

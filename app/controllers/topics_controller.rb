@@ -118,8 +118,6 @@ class TopicsController < ApplicationController
     set_page_title @topic.title
     last_page = @topic.last_page
     @replies = @topic.replies.asc(:created_at).paginate :per_page => 20, :page => (params[:page] || last_page )
-    user_ids = @replies.map{|reply| reply.user_id}.push(@topic.user_id).flatten.compact.uniq
-    @user_hash = User.create_user_hash(user_ids)
 
     if current_logined?
       current_user.read_topic @topic
@@ -187,8 +185,6 @@ class TopicsController < ApplicationController
   end
 
   def prepare_for_index
-    user_ids = @topics.map{|topic| [topic.user_id, topic.last_replied_by_id]}.flatten.compact.uniq
-    @user_hash = User.create_user_hash(user_ids)
     @recent_tags = get_recent_tags @topics
   end
 
